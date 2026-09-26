@@ -27,3 +27,15 @@ class Stock(Base):
     product_id = Column(Integer, ForeignKey("products.id"))
     warehouse_id = Column(Integer, ForeignKey("warehouses.id"))
     quantity = Column(Float, default=0)
+
+
+class StockMovement(Base):
+    __tablename__ = "stock_movements"
+
+    id = Column(Integer, primary_key=True)
+    product_id = Column(Integer)
+    operation = Column(String)
+    quantity = Column(Float)
+    source = Column(String)
+    destination = Column(String)
+    status = Column(String, default="Done")
