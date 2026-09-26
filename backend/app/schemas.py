@@ -543,6 +543,8 @@ class RecentOperation(BaseModel):
     updated_at: datetime
     item_count: int
     total_quantity: float
+    # Shared unit of all lines, or None when the lines mix units.
+    unit: str | None
     summary: str
 
 

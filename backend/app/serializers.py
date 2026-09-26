@@ -253,6 +253,7 @@ def recent_operation(document, kind):
             updated_at=document.updated_at,
             item_count=1,
             total_quantity=normalize_qty(document.difference),
+            unit=document.product.unit,
             summary=document.product.name,
         )
 
@@ -272,6 +273,7 @@ def recent_operation(document, kind):
         destination_name = None
         warehouse_name = document.location.warehouse.name
 
+    units = {item.product.unit for item in document.items}
     return schemas.RecentOperation(
         id=document.id,
         document_type=kind,
@@ -285,5 +287,6 @@ def recent_operation(document, kind):
         updated_at=document.updated_at,
         item_count=len(document.items),
         total_quantity=normalize_qty(sum(item.quantity for item in document.items)),
+        unit=units.pop() if len(units) == 1 else None,
         summary=_summary([item.product.name for item in document.items]),
     )
