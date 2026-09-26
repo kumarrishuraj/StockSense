@@ -63,7 +63,7 @@ export default function RecentOperations({ operations, loading, error, onRetry, 
           <p>Latest receipts, deliveries, transfers and adjustments</p>
         </div>
       </div>
-      <div className="tabs" role="tablist" aria-label="Document type">
+      <div className="tabs" role="tablist" aria-label="Recent operation types">
         {TABS.map((tab) => (
           <button
             key={tab.value || 'all'}
