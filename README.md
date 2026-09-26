@@ -21,7 +21,7 @@ Built for the **Odoo × LPU Jalandhar Hackathon 2026**.
 11. [API overview](#api-overview)
 12. [Demo workflow](#demo-workflow)
 13. [Testing](#testing)
-14. [Team and branches](#team-and-branches)
+14. [Team and project history](#team-and-project-history)
 15. [Known limitations](#known-limitations)
 
 ---
@@ -140,6 +140,9 @@ StockSense/
 Prerequisites: **Python 3.10+** and **Node.js 20.19+ or 22.12+** (required by Vite 8). Use two terminals.
 
 ```bash
+git clone https://github.com/kumarrishuraj/StockSense.git
+cd StockSense
+
 # Terminal 1 (backend)
 cd backend
 python -m venv .venv
@@ -326,21 +329,26 @@ The UI was also exercised end-to-end in a real browser (headless Microsoft Edge 
 
 ---
 
-## Team and branches
+## Team and project history
 
-`main` is the shared integration branch. Work was split into feature branches:
+`main` is the single source of truth: it contains the complete, runnable project (backend, frontend, tests, seed data and configuration examples) and does not depend on any other branch.
 
-| Branch | Area |
+The project started as four feature branches, one per team area:
+
+| Area | Started as |
 |---|---|
-| `backend` | FastAPI skeleton: database config, first models, stock calculation service |
-| `dashboard` | React/Vite app structure and dashboard layout |
-| `auth-products` | Login/signup, product and warehouse pages |
-| `inventory` | Receipt, delivery, transfer, adjustment and move-history pages |
-| `integration` | All of the above merged (history preserved) and completed into the working system described here |
+| FastAPI skeleton: database config, first models, stock calculation service | `backend` |
+| React/Vite app structure and dashboard layout | `dashboard` |
+| Login/signup, product and warehouse pages | `auth-products` |
+| Receipt, delivery, transfer, adjustment and move-history pages | `inventory` |
 
-Workflow: `git fetch origin && git merge origin/main` before starting, commit meaningful steps, push your own branch, and open a pull request into `main`.
+These branches were merged together (their commit history is preserved in `main`) and completed into the working system described here. They are no longer used; start new work from `main`:
 
-Note for branch owners: the `auth-products` and `inventory` pages lived under `frontend/`, which was outside the Vite app, so they were moved into `src/pages/...` on `integration`. Merge `integration` (or `main`, once it has been merged there) into your branch before continuing work.
+```bash
+git switch main && git pull
+git switch -c my-feature
+# ...commit, then push the branch and open a pull request into main
+```
 
 ---
 
